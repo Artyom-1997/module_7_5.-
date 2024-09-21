@@ -1,0 +1,22 @@
+import os
+import time
+
+directory = "your_directory_path_here"
+
+def explore_directory(directory):
+    for dirpath, dirnames, filenames in os.walk(directory):
+        for filename in filenames:
+            full_path = os.path.join(dirpath, filename)
+            last_modified_time = os.path.getmtime(full_path)
+            formatted_time = time.ctime(last_modified_time)
+            file_size = os.path.getsize(full_path)
+            parent_directory = os.path.dirname(full_path)
+
+            print(f"Файл: {full_path}")
+            print(f"Родительская директория: {parent_directory}")
+            print(f"Последнее изменение: {formatted_time}")
+            print(f"Размер: {file_size} байт")
+            print("-" * 40)
+
+if __name__ == "__main__":
+    explore_directory(directory)
